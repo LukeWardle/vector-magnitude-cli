@@ -1,0 +1,21 @@
+# Python virtual enviroment
+.venv/
+venv/
+env/
+# Python cache files
+_pycache_/
+*.pyc
+*.pyo
+*.pyd
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+# OS files
+.DS_Store
+thumbs.db
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
