@@ -9,6 +9,8 @@ import argparse
 import sys
 from src.vector_utils import vector_magnitude
 
+__version__ = "1.0.0"
+
 def parse_arguments():
   """
   Parse command-line arguments.
@@ -35,6 +37,13 @@ def parse_arguments():
     action="store_true",
     help="Show detailed calculation steps"
   )
+
+  parser.add_argument(
+    "--version",
+    action="version",
+    version=f"%(prog)s {__version__}"
+  )
+
 
   return parser.parse_args()
 
