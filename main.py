@@ -9,6 +9,8 @@ import argparse
 import sys
 from src.vector_utils import vector_magnitude
 
+__version__ = "1.0.0"
+
 def parse_arguments():
   """
   Parse command-line arguments.
@@ -37,9 +39,15 @@ def parse_arguments():
   )
 
   parser.add_argument(
+    "--version",
+    action="version",
+    version=f"%(prog)s {__version__}"
+  )
+
+  parser.add_argument(
     "--file",
     type=str,
-    help="Path to file containing comma-seperated vector"
+    help="Path to file containing comma-separated vector"
   )
 
   return parser.parse_args()
