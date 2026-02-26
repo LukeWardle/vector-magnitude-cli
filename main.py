@@ -26,7 +26,7 @@ def parse_arguments():
   parser.add_argument(
     "--vector",
     type=str,
-    required=True,
+    required=False,
     help="Comma-seperated vector components (e.g., '3, 4, 5')"
   )
 
@@ -34,6 +34,12 @@ def parse_arguments():
     "--verbose",
     action="store_true",
     help="Show detailed calculation steps"
+  )
+
+  parser.add_argument(
+    "--file",
+    type=str,
+    help="Path to file containing comma-seperated vector"
   )
 
   return parser.parse_args()
@@ -76,8 +82,22 @@ def main():
     # Parse command-line arguments
     args = parse_arguments()
 
+    # Determine input source
+    if args.file:
+      try:
+        with open(args.file, 'r') as f:
+          vector_string = f.read().strip()
+      except FileNotFoundError:
+        print(f"Error: File '{args.file}' not found", file=sys.stderr)
+        return 1
+    elif args.vector:
+      vector_string = args.vector
+    else:
+      print("Error: Provide either --vector or --file", file=sys.stderr)
+      return 1
+
     # Parse vector from string input
-    vector = parse_vector_input(args.vector)
+    vector = parse_vector_input(vector_string)
 
     # Show verbose output if requested
     if args.verbose:
