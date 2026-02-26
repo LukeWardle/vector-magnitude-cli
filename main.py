@@ -8,6 +8,8 @@ This script provides a user-friendly CLI for computing vector magnitudes.
 import argparse
 import sys
 from src.vector_utils import vector_magnitude
+from src.logger_config import setup_logger
+logger = setup_logger()
 
 __version__ = "1.0.0"
 
@@ -132,7 +134,8 @@ def main():
         print("Warning: Plotting only available for 2D vectors", file=sys.stderr)
 
     # Display result
-    print(f"Magnitude: {magnitude:.6f}")
+    logger.info(f"Magnitude: {magnitude:.6f}")
+    logger.debug(f"Processed vector with {len(vector)} dimensions")
 
     return 0 # Success
   
