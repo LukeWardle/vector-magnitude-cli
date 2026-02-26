@@ -39,7 +39,7 @@ def vector_magnitude(vector: Union[List[float], np.ndarray]) -> float:
   """
 
   # Validate input
-  if not vector or len(vector) == 0:
+  if vector is None or len(vector) == 0:
     raise ValueError("Vector cannot be empty")
   
   # Convert to NumPy array for efficient vectorised computation
