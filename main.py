@@ -50,6 +50,12 @@ def parse_arguments():
     help="Path to file containing comma-separated vector"
   )
 
+  parser.add_argument(
+    "--plot",
+    action="store_true",
+    help="Create 2D visualisation (only for 2D vectors)"
+  )
+
   return parser.parse_args()
 
 def parse_vector_input(vector_string: str) -> list:
@@ -116,6 +122,14 @@ def main():
 
     # Calculate magnitude
     magnitude = vector_magnitude(vector)
+
+    if args.plot:
+      if len(vector) == 2:
+        from src.vector_utils import visualise_2d_vector
+        visualise_2d_vector(vector)
+        print("Plot saved to outputs/vector_plot.png")
+      else:
+        print("Warning: Plotting only available for 2D vectors", file=sys.stderr)
 
     # Display result
     print(f"Magnitude: {magnitude:.6f}")
